@@ -1,20 +1,36 @@
-use std::{
-    fs::File,
-    io::{prelude::*, BufReader},
-    path::Path,
-};
+use std::fs;
 
-fn lines_from_file(filename: impl AsRef<Path>) -> Vec<String> {
-    let file = File::open(filename).expect("no such file");
-    let buf = BufReader::new(file);
-    buf.lines()
-        .map(|l| l.expect("Could not parse line"))
-        .collect()
-}
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+        //Set total count of dupes seen
+        //TODO
 
-fn main() {
-    let lines = lines_from_file("../input.txt");
-    for line in lines {
-        println!("{}", line);
-    }
+        //Read in the input file into a single string
+        let message: String = fs::read_to_string("../input.txt")?;
+
+        //Split the file up by ,
+        let file_splitter = message.split(",");
+        let all_ranges = file_splitter.collect::<Vec<&str>>();
+
+        //Loop through each range 
+        for range in all_ranges{
+
+            //Split the range by - 
+            let range_splitter = range.split("-");
+            let both_ranges = range_splitter.collect::<Vec<&str>>();
+            
+            //Store the bottom and top range
+            let bottom_range: i64 = both_ranges[0].parse().unwrap();
+            let top_range: i64 = both_ranges[1].parse().unwrap();
+
+            //Loop through the range
+            for check_number in bottom_range..top_range {
+                //Check for dupe
+                //Increment dupe seen counter
+                //TODO
+
+                println!("{}", check_number);
+            }
+
+        } 
+        Ok(())
 }
