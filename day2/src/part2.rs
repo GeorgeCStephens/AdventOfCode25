@@ -28,25 +28,23 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             //Loop through the range
             for check_number in bottom_range..top_range {
                 let string_number: String = check_number.to_string();
-                //println!("===");
-                //println!("{}", string_number);
 
+                //Check each possible pattern in the range
                 for length in 1..(string_number.len()/2+1) {
+                    //Get the base of the pattern
                     let string_to_check: String = string_number[0..length].to_string(); 
-                    //println!("{}", string_to_check);
 
+                    //Build what the string would look like if there was a pattern
                     let mut invalid_code: String = "".to_owned();
                     let string_to_concat: String = string_to_check.to_owned();
-                         
                     for i in 0..string_number.len()/string_to_check.len() {
                         invalid_code.push_str(&string_to_concat);
                     }
-                    //println!("{}", invalid_code);
 
+                    //Check if our code matches the invalid pattern
                     if string_number == invalid_code {
-                        //println!("FOUND");
                         count = count + check_number;
-                        break;
+                        break; //Break as if its invalid we only want to add it once
                     }
                 }
             }
