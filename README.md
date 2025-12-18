@@ -3,10 +3,7 @@ This repository holds all code relating to the solutions for [advent of code 202
 
 
 ## Structure
-The codebase is split to two folders.
-- Rust
-- Java
-
+The codebase is split to two folders...
 
 ### Rust
 This is a messy code base that I am using to learn Rust from scratch.
